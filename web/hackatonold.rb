@@ -1,31 +1,32 @@
-require "sinatra/base"
-require "sinatra/reloader"
+﻿# coding: utf-8
+require 'sinatra/base'
+require 'sinatra/reloader'
 
-class Hackaton < Sinatra::Base
+class Hackaton < Sinatra::Base 
 
 	register Sinatra::Reloader
 
 	set :protection, :except => :frame_options
-
+	
 	before do
-		redirect reqyest.url.sub(/www\./, ''), 301 if request.host =~ /^www/
+		redirect request.url.sub(/www\./, ''), 301 if request.host =~ /^www/
 	end
 
-	get '/' do
+	get '/' do 
 		erb :index
 	end
 
-	get '/reporte/:id' do
+	get '/reporte/:id' do 
 		erb :reporte
 	end
 
-	get '/about' do
+	get '/about' do 
 		erb :about
 	end
 
-	get '/newreporte' do
+	get '/newreporte' do 
 		erb :newreporte
-	end
+	end 
 
 	get '/reportes' do
 		erb :reportes
@@ -35,8 +36,8 @@ class Hackaton < Sinatra::Base
 		erb :candidato
 	end
 
-	get '/stats' do
-		
+	get '/stats' do 
+
 	end
 
 	get '/css/:name.css' do

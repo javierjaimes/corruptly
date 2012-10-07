@@ -13,15 +13,17 @@ module Corruptly
 
     post '/' do
       report = Report.create(
-        :longitude => params['longitude'], 
-        :latitude => params['latitude'], 
-        :localization => params['localization'], 
+        :location => params['location'],
         :advertising_piece => params['advertising_piece'], 
+        :description => params['description'],
+        :candidate_id => params['candidate_id']
         :comments => params['comments'], 
         :file => params[ :file ][ :tempfile ]
       )
       report.file_name = params[ :file ][ :filename ]
       report.save
+      
+      # Save attachment
       report.to_json
       #asset = Asset.create(:file => params[:file][:tempfile])
         # this changes the name so that when downloading the 'proper' name is preserved

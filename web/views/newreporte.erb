@@ -5,27 +5,38 @@
 			<form method="POST">
 			<div>
 			   <label for="titulo" class="titulo">Título del Reporte</label>
-			   <input type="text" name="titulo" />
+			   <input type="text" name="titulo" required />
                <p>ingrese el titulo del reporte</p>
 			</div>
 			<div>
 				    
 			   <label for="titulo" class="titulo">Descripción del Reporte</label>
-			   <textarea name="descripcion"></textarea>
+			   <textarea name="descripcion" required></textarea>
                <p>ingrese la descripcion del reporte</p>
 			</div>
             <div>
                 <label for="imagenPerfil">Imagen perfil</label>
-                <div class="mr-case-photo"></div>
+                
+                <div id="drop-files" ondragover="return false"> <!-- ondragover for firefox -->
+                </div>
+                <div id="uploaded-holder">
+                    <div id="dropped-files">
+                        <div id="upload-button">
+                            <a href="#" class="delete">x</a>
+                            <span>0 Files</span>
+                        </div>
+                    </div>
+                </div>
                 <p>arrastre y suelte la imagen de su perfil</p>
             </div>
+			   <input type="submit" value="Enviar"/>
 			</form>
 		</div> 
 	</div>
 	<div class="mr-right">
         <div class="mr-report-rating" >
         <p class="ubicacion">Ubicaci&oacute;n</p>
-            <iframe width="100%" height="80%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=4.67498,-74.068451&amp;spn=0.198122,0.307961&amp;t=m&amp;z=12&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/?ie=UTF8&amp;ll=4.67498,-74.068451&amp;spn=0.198122,0.307961&amp;t=m&amp;z=12&amp;source=embed" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small></small>
+            <iframe width="100%" height="80%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=4.67498,-74.068451&amp;spn=0.198122,0.307961&amp;t=m&amp;z=12&amp;output=embed"></iframe>
         </div>	
 	</div>
    </div>
