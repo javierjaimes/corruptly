@@ -1,5 +1,6 @@
 require './application'
 require './modules/users'
+require './modules/elections'
 
 map '/' do
   run Corruptly::Application
@@ -9,4 +10,8 @@ end
 
 map '/users' do
   run Corruptly::Users
+end
+
+map '/elections' do
+  run Corruptly::Elections
 end
