@@ -29,7 +29,7 @@ class Hackaton < Sinatra::Base
 	get '/reportes/nuevo' do
 		erb :newreporte
 	end
-	
+
 	get '/reportes/:id' do
 		@rest = HTTParty.get('http://corruptly.herokuapp.com/reports')
 		erb :reporte
@@ -40,7 +40,9 @@ class Hackaton < Sinatra::Base
 	end
 
 	
-
+	get '/jhon' do
+		erb :jhon
+	end
 	
 
 	get '/candidato' do

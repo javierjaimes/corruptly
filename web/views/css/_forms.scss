@@ -12,12 +12,67 @@
     text-align:center;
     .middle {
       display:inline-block;
-      width:49%;
+      width:47%;
       min-height:200px;
       vertical-align:top;
       text-align:left;
-      background:#ff0066;
+      padding:10px;
+
+      .formcamp {
+        border-bottom:1px dashed #dedede;
+        margin-bottom:20px;
+        margin-top:20px;
+
+        input, select, textarea {
+          border-radius:5px;
+          border:1px solid #bcced6;
+          padding:10px;
+        }
+
+      }
+
+      label {
+        display:block;
+        font-size:20px;
+        font-weight:bold;
+        margin:10px auto;
+      }
+
+      input, textarea, select {
+        width:90%;
+      }
+
+      p {
+        font-size:12px;
+      }
+
+
+      iframe {
+        border:none;
+        border-radius:5px;
+        border:1px solid #bcced6;
+      }
+
     }
+
+    .button {
+      text-align:left;
+      width:100%;
+    }
+
+    .reporta {
+      @include degrade();
+      padding:10px 20px;
+      border:1px solid #07489b;
+      border-radius:5px;
+      font-size:20px;
+      color:#fff;
+      text-shadow:0 1px 1px rgba(0,0,0,0.5);
+      box-shadow:0 1px 1px rgba(255,255,255,0.6) inset,
+                 0 0px 4px rgba(0,0,0,0.8);
+     margin:10px;
+    }
+
 }
 
 
