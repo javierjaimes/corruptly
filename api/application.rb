@@ -7,9 +7,7 @@ require 'sinatra/reloader'
 require './helpers/auth'
 require './models/election'
 
-DB = Mongo::Connection.new[ "corruptly" ]
-puts DB
-MongoMapper.connection = DB
+MongoMapper.connection = Mongo::Connection.new()
 MongoMapper.database = 'corruptly' 
 
 module Corruptly
@@ -25,7 +23,7 @@ module Corruptly
 
     #helpers Sinatra::Auth
     register Rack::OAuth2::Sinatra
-    oauth.database = DB
+    oauth.database = Mongo::Connection.new["corruptly"]
     oauth.authenticator = lambda do | username, password |
       user = User.find( username )
       user if user && user.authenticated?( password )

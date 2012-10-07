@@ -18,6 +18,8 @@ module Corruptly
     post '/' do
       election = Election.create(
                                  :name => params['name'], 
+                                 :corporation => params['corporation'], 
+                                 :year => params['year'], 
                                  )
       election.save
       election.to_json
