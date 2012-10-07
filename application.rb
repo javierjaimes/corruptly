@@ -33,7 +33,6 @@ module Corruptly
       oauth.database = Mongo::Connection.new["corruptly"]
     end
 
-
     #helpers Sinatra::Auth
     oauth.authenticator = lambda do | username, password |
       user = User.find_by_email( username )
@@ -43,6 +42,7 @@ module Corruptly
     end
 
     before do
+      response.headers["Access-Control-Allow-Origin"] = "*"
       content_type :json
     end
 
