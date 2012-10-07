@@ -6,6 +6,7 @@ require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
 
+DB_HOST = MONGOHQ_URL;
 
 module Corruptly
   class Application < Sinatra::Base
@@ -18,8 +19,8 @@ module Corruptly
 
 
     configure :production do
-      MongoMapper.connection = Mongo::Connection.new( MONGOHQ_URL )
-      oauth.database = Mongo::Connection.new(MONGOHQ_URL)["corruptly"]
+      MongoMapper.connection = Mongo::Connection.new( DB_HOST )
+      oauth.database = Mongo::Connection.new( DB_HOST )["corruptly"]
     end
 
     configure :development do
