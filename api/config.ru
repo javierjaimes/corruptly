@@ -4,6 +4,8 @@ require './modules/elections'
 require './modules/parties'
 require './modules/reports'
 require './modules/candidates'
+require './modules/files'
+
 
 map '/' do
   run Corruptly::Application
@@ -23,12 +25,20 @@ map '/parties' do
   run Corruptly::Parties
 end
 
-
 map '/reports' do
   run Corruptly::Reports
+
+  map '/file' do
+    run Corruptly::Files
+  end
 end
 
+<<<<<<< HEAD
 map'/candidate' do
   run Corruptly::candidate
+=======
+map '/candidates' do
+  run Corruptly::Candidates
+>>>>>>> 41581b59ac38c753d49ae10fd83967b9c4fae227
 end
 

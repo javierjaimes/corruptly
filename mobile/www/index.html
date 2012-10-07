@@ -27,11 +27,32 @@
         <title>Corruptly</title>
     </head>
     <body>
+        <!-- !Login page -->
+        <div id="login-page" data-role="page"> 
+          <div data-role="header"><h1>Corruptly</h1></div>
+        	<div data-role="content">
+          	<form id="login-form" data-ajax="false">
+              <label for="username">Usuario:</label>
+              <input type="email" name="username" id="username" autocapitalize="off" autocorrect="off" />
+              
+              <label for="password">Contraseña:</label>
+              <input type="password" name="password" id="password" autocapitalize="off"/>
+              
+              <div class="login-error"></div>
+              
+              <br />
+                              
+              <button type="submit" data-theme="b">Ingresar</button>
+          	</form>
+        	</div>
+        </div>
+        
         <!-- !Main page -->
         <div id="main-page" data-role="page"> 
         	<div data-role="header"><h1>Corruptly</h1></div>
         	
         	<div data-role="content">
+            <img src="img/logo.gif" />
           	<a data-role="button" href="#report-page" data-transition="slide">Reportar</a>
         	</div>
         </div>
@@ -41,13 +62,21 @@
         	<div data-role="header"><h1>Reportar</h1></div>
         	
         	<div data-role="content">
-          	<p>Reporta blah</p>
+          	<p>Reporta ahora publicidad de un candidato!</p>
           	
           	<form id="report-form" data-ajax="false">
               <label for="candidate">Candidato:</label>
-              <input type="text" name="candidate" id="candidate" />
+              <input type="text" name="candidate" id="candidate" autocorrect="off"/>
               <input type="hidden" name="candidate_id" id="candidate_id" />
               <ul id="suggestions" data-role="listview" data-inset="true"></ul>
+              
+              <label for="advertising_piece">Tipo de publicidad:</label>
+              <select name="advertising_piece" id="advertising_piece">
+                <option value="vallas">Vallas</option>
+                <option value="carteles">Carteles</option>
+                <option value="pautas_radiales">Pautas radiales</option>
+                <option value="pautas_tv">Pautas TV</option>
+              </select>
               
               <label for="description">Descripción:</label>
               <textarea name="description" id="description"></textarea>
