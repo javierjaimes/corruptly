@@ -2,17 +2,16 @@ module Sinatra
 
     module Auth
       def protected!
-        unless authorized?
-          response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
-          throw(:halt, [401, "Not authorized\n"])
+        query = request.query_string
+        unless query.match( 'oauth_token=' )
+          throw( :halt, [ 401, "Unauthorized" ])
         end
+        token =  Rack::OAuth2::Server::get_access_token query.gsub /^oauth_token=/, ''
+        token.identity if token
       end
 
       def authorized?
-        @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-        @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == ['admin', 'admin']
       end
-
 
   end
 

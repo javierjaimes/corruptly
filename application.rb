@@ -43,26 +43,7 @@ module Corruptly
     end
 
     before do
-      #protected!
       content_type :json
-      #@current_user = User.find_by_email(oauth.identity) if oauth.authenticated?
-      #@get = CGI::parse(request.query_string).to_json
-
-      #load the query string
-      query = request.query_string
-      #unless !/^oauth_token/.match( query ).nil?
-        ##throw(:halt, [401, "Unanthorized"]) 
-      #end
-
-      unless query.match( 'oauth_token=' )
-        puts 'si'
-        throw( :halt, [ 401, "Unauthorized" ])
-      end
-
-      #oauth_token = 
-      token =  Rack::OAuth2::Server::get_access_token query.gsub /^oauth_token=/, ''
-      puts token
-      #puts token.identity
     end
 
     #oauth_required '/protected'
