@@ -26,6 +26,10 @@ section[role="reportes"] {
 								0 1px 5px rgba(0,0,0,0.3);
 		}
 
+		video {
+			width:100%;
+		}
+
 		.info {
 			padding:10px;
 			margin-top:10px;
@@ -165,6 +169,23 @@ aside {
 	 				float:right;
 	 				clear:both;
 	 			}
+ 			}
+
+ 			.candi {
+ 				background:none;
+ 				max-height:200px;
+ 				overflow:auto;
+
+ 				a {
+ 					display:block;
+ 					text-transform:lowercase;
+ 					font-size:14px;
+ 					margin:5px 0px 5px 10px;
+ 					text-decoration:none;
+ 					border-bottom:1px dotted darken(#e9eef2, 20%);
+ 					padding-bottom:5px;
+ 					color:darken(#1f86f6,10%);
+ 				}
  			}
  		}
  	}

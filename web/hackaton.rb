@@ -1,11 +1,12 @@
 require "sinatra/base"
 require "sinatra/reloader"
 require 'rubygems'
-#require "rest_client"
+require './modules/modules'
 require "json"
 require "httparty"
 
 class Hackaton < Sinatra::Base
+	helpers Sinatra::BotticoHelpers
 
 	register Sinatra::Reloader
 
@@ -19,7 +20,18 @@ class Hackaton < Sinatra::Base
 		erb :index
 	end
 
-	get '/reporte/:id' do
+	get '/reportes' do
+		@rest = HTTParty.get('http://corruptly.herokuapp.com/reports')
+		@cand = HTTParty.get('http://corruptly.herokuapp.com/candidates')
+		erb :reportes
+	end
+
+	get '/reportes/nuevo' do
+		erb :newreporte
+	end
+	
+	get '/reportes/:id' do
+		@rest = HTTParty.get('http://corruptly.herokuapp.com/reports')
 		erb :reporte
 	end
 
@@ -27,25 +39,15 @@ class Hackaton < Sinatra::Base
 		erb :about
 	end
 
-	get '/newreporte' do
-		erb :newreporte
-	end
+	
 
-	get '/reportes' do
-		@rest = HTTParty.get('http://corruptly.herokuapp.com/reports')
-
-		erb :reportes
-	end
+	
 
 	get '/candidato' do
 		erb :candidato
 	end
 
 	get '/stats' do
-		
-	end
-
-	get '/restget' do
 		
 	end
 
