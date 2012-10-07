@@ -18,18 +18,21 @@ module Corruptly
 
 
     configure :production do
-      MongoMapper.connection = Mongo::Connection.new( ENV['MONGOHQ_URL'] )
-      oauth.database = Mongo::Connection.new( ENV['MONGOHQ_URL'] )["corruptly"]
+      uri = URI.parse(ENV['MONGOHQ_URL'])
+      MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
+      MongoMapper.database = uri.path.gsub(/^\//, '')
+      oauth.database = Mongo::Connection.from_uri( ENV['MONGOHQ_URL'] )[ uri.path.gsub(/^\//, '') ]
     end
 
     configure :development do
       register Sinatra::Reloader
 
       MongoMapper.connection = Mongo::Connection.new()
+      MongoMapper.database = 'corruptly' 
+
       oauth.database = Mongo::Connection.new["corruptly"]
     end
 
-    MongoMapper.database = 'corruptly' 
 
     #helpers Sinatra::Auth
     oauth.authenticator = lambda do | username, password |
