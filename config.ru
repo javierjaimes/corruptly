@@ -25,8 +25,13 @@ end
 
 map '/reports' do
   run Corruptly::Reports
+
+  map '/file' do
+    run Corruptly::Files
+  end
 end
 
 map '/candidates' do
   run Corruptly::Candidates
 end
+
