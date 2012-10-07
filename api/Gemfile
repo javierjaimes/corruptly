@@ -1,7 +1,8 @@
 source :rubygems
 
 gem "json", "~> 1.7.5"
-gem "rack-oauth2", "~> 0.14.9"
+gem "haml", "~> 3.1.7"
+gem "rack-oauth2-server", "~> 2.8.0"
 gem 'sinatra'
 gem "sinatra-contrib", "~> 1.3.1"
 gem 'mongo'
