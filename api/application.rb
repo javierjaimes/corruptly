@@ -5,7 +5,6 @@ require 'sinatra/base'
 require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
-require './models/election'
 
 MongoMapper.connection = Mongo::Connection.new()
 MongoMapper.database = 'corruptly' 
