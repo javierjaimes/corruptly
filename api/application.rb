@@ -5,6 +5,9 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require './helpers/auth'
 
+
+MongoMapper.database = 'corruptly' 
+
 module Corruptly
   class Application < Sinatra::Base
 
@@ -19,6 +22,7 @@ module Corruptly
     #helpers Sinatra::Auth
 
     get '/' do
+      puts oauth
       'Hola mundo'
     end
 
