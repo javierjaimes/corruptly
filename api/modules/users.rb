@@ -6,8 +6,6 @@ require 'sinatra/reloader'
 require './helpers/auth'
 
 
-MongoMapper.database = 'askler'
-
 module Corruptly
 
   class Users < Application

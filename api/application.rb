@@ -5,12 +5,11 @@ require 'sinatra/base'
 require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
-require './models/election'
+require './models/user'
 
-DB = Mongo::Connection.new[ "corruptly" ]
-puts DB
-MongoMapper.connection = DB
-MongoMapper.database = 'corruptly' 
+#DATABASE = Mongo::Connection.new
+#puts DB
+#MongoMapper.connection = DATABASE
 
 module Corruptly
   class Application < Sinatra::Base
@@ -25,10 +24,11 @@ module Corruptly
 
     #helpers Sinatra::Auth
     register Rack::OAuth2::Sinatra
-    oauth.database = DB
+    oauth.database = Mongo::Connection.new[ 'corruptly' ]
     oauth.authenticator = lambda do | username, password |
-      user = User.find( username )
-      user if user && user.authenticated?( password )
+      user = User.find_by_email( username )
+      puts "user"
+      user if user && user.password == password
     end
 
     before do
@@ -56,15 +56,15 @@ module Corruptly
     end
 
     get '/' do
-      election = Election.new(
-        :name => '123'
+      user = User.new(
+        :email => 'javierjaimes@gmail.com',
+        :password => '123',
+        :developer => true
       )
-      election.save
-      
-      elec = Election.all
-      
-      'Hola mundo'
-      elec.to_json
+      #user.save
+      user.to_json
+      users = User.all
+      users.to_json
     end
 
     #Not Found
@@ -83,11 +83,6 @@ module Corruptly
       errors = { :errors => error.messages }
       errors.to_json
     end
-
-    private
-      def current_user=(user)
-        @current_user = user
-      end
 
   end
 end
