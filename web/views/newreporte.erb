@@ -1,9 +1,29 @@
+<%= wayrapascua %>
 <section class="newreport">
     <form action="/reportes/nuevo" method="post">
         <div class="middle">
             <div class="formcamp">
                 <label for="Tipo">Tipo</label>
                 <input type="text" name="advertising_piece">
+                <p>¿Que tipo de publicidad es la que encontraste?</p>
+            </div>
+            
+            <div class="formcamp">
+                <label for="Tipo">Candidato</label>
+                <select name="candidate_id" >
+                    <option value="1">lala</option>
+                    <option value="2">lala</option>
+                    <option value="3">lala</option>
+                    <option value="4">lala</option>
+                    <option value="5">lala</option>
+                </select>
+                <p>¿A que candidato corresponde?</p>
+            </div>
+            
+            <div class="formcamp">
+                <label for="Tipo">Descripcion</label>
+                <textarea name="description" cols="30" rows="10"></textarea>
+                <p>¿Que tipo de publicidad es la que encontraste?</p>
             </div>
         </div>
         <div class="middle">
