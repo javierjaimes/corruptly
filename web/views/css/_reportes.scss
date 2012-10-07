@@ -78,6 +78,7 @@ section[role="reportes"] {
 
 		.contLikes {
 			padding-left:2px;
+			display:inline-block;
 			.likes {
 				max-width:60%;
 				height:38px;
@@ -91,6 +92,12 @@ section[role="reportes"] {
 					height:32px;
 					box-shadow:0 0px 1px rgba(255,255,255,0.9) inset;
 				}
+			}
+
+			.cantLikes {
+				@include degrade();
+				width:20%;
+				display:inline-block;
 			}
 		}
 

@@ -24,6 +24,10 @@ class Hackaton < Sinatra::Base
 		erb :reportes
 	end
 
+	get '/candidato' do
+		erb :candidato
+	end
+
 	get '/stats' do 
 
 	end
