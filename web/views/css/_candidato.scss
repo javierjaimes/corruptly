@@ -7,6 +7,7 @@
 	border-top-right-radius:5px;
 	box-shadow:0 1px 1px rgba(255,255,255,0.9) inset, 0 1px 5px rgba(0,0,0,0.3);
 	overflow:hidden;
+	float:left;
 }
 #perfilCandidato .picture {
 	width:100%;
@@ -31,6 +32,9 @@
 	top: 150px;
 	right: 10px;
 }
+#perfilCandidato dl {
+	border-bottom:1px solid gray;
+}
 #perfilCandidato dt {
 	margin-left: 10px;
 	color: gray;
@@ -42,4 +46,6 @@
 	margin-bottom: 4px;
 	margin-left: 28px;
 }
-
+#reportes {
+	float:left;
+}
