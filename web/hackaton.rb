@@ -1,4 +1,4 @@
-require 'sinatra/base'
+﻿require 'sinatra/base'
 require 'sinatra/reloader'
 
 class Hackaton < Sinatra::Base 
