@@ -6,7 +6,6 @@ require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
 
-
 DB = Mongo::Connection.new[ "corruptly" ]
 puts DB
 MongoMapper.connection = DB
