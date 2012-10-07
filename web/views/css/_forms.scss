@@ -1,5 +1,26 @@
 @mixin set_place ($posicion) { float: $posicion; width: 49%; height: 100% }
 
+
+.newreport {
+
+    background:#fff;
+    border:1px solid #bcced6;
+    border-radius:3px;
+    margin:6px auto;
+    width:100%;
+    padding:5px;
+    text-align:center;
+    .middle {
+      display:inline-block;
+      width:49%;
+      min-height:200px;
+      vertical-align:top;
+      text-align:left;
+      background:#ff0066;
+    }
+}
+
+
 .mr-content {
 	width:100%;
 	height: 455px;
