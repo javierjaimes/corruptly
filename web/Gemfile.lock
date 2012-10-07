@@ -1,4 +1,5 @@
 GEM
+  remote: http://rubygems.org/
   specs:
     backports (2.6.4)
     daemons (1.1.9)

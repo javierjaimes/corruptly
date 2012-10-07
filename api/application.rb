@@ -46,7 +46,7 @@ module Corruptly
     end
 
     get '/' do
-      puts oauth.authenticated?
+      
       'Hola mundo'
     end
 

@@ -1,0 +1,22 @@
+@mixin degrade($col1: #1876df, $col2: #28a6ff){
+    background:$col1;
+    background-image: -webkit-linear-gradient(bottom, $col1, $col2) !important;
+    background-image: -moz-linear-gradient(bottom, $col1, $col2) !important;
+    background-image: -o-linear-gradient(bottom, $col1, $col2) !important;
+    background-image: -ms-linear-gradient(bottom, $col1, $col2) !important;
+    background-image: linear-gradient(to top, $col1, $col2) !important;
+}
+
+@mixin trans($time:0.5s){
+	-webkit-transition:all $time ease-in-out;
+	-moz-transition:all $time ease-in-out;
+	-o-transition:all $time ease-in-out;
+	transition:all $time ease-in-out;
+}
+
+@mixin scal($tam:1.1) {
+	-webkit-transform:scale($tam);
+	-moz-transform:scale($tam);
+	-o-transform:scale($tam);
+	transform:scale($tam);
+}
