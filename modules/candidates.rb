@@ -3,7 +3,7 @@ require './models/candidate'
 
 module Corruptly
 
-  class Candidate < Application
+  class Candidates < Application
 
     get '/' do
       candidates = Candidate.all
