@@ -32,6 +32,7 @@ module Corruptly
     end
 
     delete '/:id' do
+	Candidate.destroy(params['id'])
 
     end
   end

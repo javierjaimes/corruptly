@@ -25,7 +25,13 @@ module Corruptly
       party.to_json
     end
 
-    put '/:id' do      Candidate.remove(params['id'])
+    put '/:id' do     
+	 Candidate.remove(params['id'])
+
     end
+
+
+
+
   end
 end
