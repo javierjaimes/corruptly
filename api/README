@@ -1,0 +1,10 @@
+Primera version modelos del negocio
+Eleccion [nombre] 
+Reporte [localizacion, ciudad, tipo_publicidad, comentarios, Usuario(null=True)]
+Partidos [nombre, color, logo]
+Candidato [lista(null=True), posicion_lista, nombre, Partido]
+Usuario [nombre, apellidos, correo]
+Application[key] // Esto lo tendremos en el API para autenticar la aplicacion
+
+
+Vamos a tener API ... POST para hacer submit del Reporte y el resto es GET
