@@ -43,6 +43,7 @@ module Corruptly
 
     end
 
+
     delete '/:id' do
    
 	CanCandidate.destroy(params['id'])
