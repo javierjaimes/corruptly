@@ -16,11 +16,10 @@ module Corruptly
         :location => params['location'],
         :advertising_piece => params['advertising_piece'], 
         :description => params['description'],
-        :candidate_id => params['candidate_id']
-        :comments => params['comments'], 
-        :file => params[ :file ][ :tempfile ]
+        :candidate_id => params['candidate_id'],
       )
-      report.file_name = params[ :file ][ :filename ]
+      report.file = params[ :file ][ :tempfile ] if params[ :file ]
+      report.file_name = params[ :file ][ :filename ] if params[ :file ]
       report.save
       
       # Save attachment
