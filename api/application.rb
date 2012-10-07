@@ -7,8 +7,8 @@ require 'sinatra/reloader'
 require './helpers/auth'
 
 
-puts MongoMapper.database = 'corruptly' 
-puts MongoMapper.connection
+MongoMapper.database = 'corruptly' 
+MongoMapper.connection
 
 module Corruptly
   class Application < Sinatra::Base
