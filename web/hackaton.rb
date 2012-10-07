@@ -33,7 +33,6 @@ class Hackaton < Sinatra::Base
 	end
 
 	get '/css/:name.css' do
-		#joder
 		content_type 'text/css', :charset => 'utf-8'
 		scss :"css/#{params[:name]}"
 	end

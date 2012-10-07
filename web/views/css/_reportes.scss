@@ -78,12 +78,13 @@ section[role="reportes"] {
 
 		.contLikes {
 			padding-left:2px;
-			display:inline-block;
+			
 			.likes {
 				max-width:60%;
 				height:38px;
 				overflow:hidden;
 				padding:6px;
+				display:inline-block;
 
 				img {
 					margin:2.5px;
@@ -98,6 +99,12 @@ section[role="reportes"] {
 				@include degrade();
 				width:20%;
 				display:inline-block;
+				vertical-align:top;
+				padding:5px 10px;
+				p {
+					margin:0px;
+					color:#fff;
+				}
 			}
 		}
 
