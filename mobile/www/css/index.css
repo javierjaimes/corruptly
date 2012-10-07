@@ -12,7 +12,7 @@
   
 }
 
-.error {
+.error, .login-error {
   display: none;
   margin: 15px 0 0;
   background-color: rgba(255,0,0,0.5);
@@ -23,4 +23,8 @@
 
 button {
   margin-top: 5px;
+}
+
+#main-page .ui-content {
+  text-align: center;
 }

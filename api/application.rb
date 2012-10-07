@@ -6,85 +6,69 @@ require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
 
-MongoMapper.connection = Mongo::Connection.new()
-MongoMapper.database = 'corruptly' 
 
 module Corruptly
   class Application < Sinatra::Base
 
     #set :environment, :development
+    register Rack::OAuth2::Sinatra
+
     disable :raise_errors
     disable :show_exceptions
+    
+    use Rack::Cors do |config|
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
+    configure :production do
+      uri = URI.parse(ENV['MONGOHQ_URL'])
+      MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
+      MongoMapper.database = uri.path.gsub(/^\//, '')
+      oauth.database = Mongo::Connection.from_uri( ENV['MONGOHQ_URL'] )[ uri.path.gsub(/^\//, '') ]
+    end
 
     configure :development do
       register Sinatra::Reloader
+
+      MongoMapper.connection = Mongo::Connection.new()
+      MongoMapper.database = 'corruptly' 
+
+      oauth.database = Mongo::Connection.new["corruptly"]
     end
 
     #helpers Sinatra::Auth
-    register Rack::OAuth2::Sinatra
-    oauth.database = Mongo::Connection.new["corruptly"]
     oauth.authenticator = lambda do | username, password |
-      user = User.find( username )
-      user if user && user.authenticated?( password )
+      user = User.find_by_email( username )
+      puts "user"
+      puts user.id
+      user.email if user && user.password == password
     end
 
     before do
-      #protected!
       content_type :json
-      @current_user = User.find(oauth.identity) if oauth.authenticated?
     end
 
-    get '/oauth/authorize' do
-      puts "authorize"
-      #if current_user
-        #render "oauth/authorize"
+    #oauth_required '/protected'
+    #oauth_required '/protected', :scope => 'read write'
+
+    get '/protected' do
+      #puts Rack::OAuth2::Server::get_access_token query.gsub /^oauth_token=/, ''
+      #puts "Y el token"
+      #if oauth.authenticated?
+      #'Show me!!!'
       #else
-        #redirect "/oauth/login?authorization=#{oauth.authorization}"
+      #  'Not authtenticated'
       #end
-      haml "oauth/authorize2"
+      "Hola mundo"
+
     end
 
-    post '/oauth/grant' do
-      oauth.grant! "Superman"
-    end
-
-    post '/oauth/deny' do
-      oauth.deny!
-    end
-
-    get '/' do
-      election = Election.new(
-        :name => '123'
-      )
-      election.save
-      
-      elec = Election.all
-      
-      'Hola mundo'
-      elec.to_json
-    end
-
-    #Not Found
-    not_found do
-    end
-
-    error 400 do
-      "Bad wrong parameters"
-    end
-
-    error 401 do
-      error = Error.new
-      error.messages.build( :code => 401, :text => 'Access forbidden')
-      error.to_json
-
-      errors = { :errors => error.messages }
-      errors.to_json
-    end
-
-    private
-      def current_user=(user)
-        @current_user = user
-      end
+    #error 401 do
+    #  return [401, { "Content-Type"=>"text/plain" }, [error && error.message || ""]]
+    #end
 
   end
 end
