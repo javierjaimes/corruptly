@@ -18,7 +18,8 @@
  */
  
 var geocoder;
-var url = "http://lumba.lu/upload.php";
+//var url = "http://lumba.lu/upload.php";
+var url = "http://corruptly.herokuapp.com/reports";
 //var login_url = "http://lumba.lu/login.php";
 var login_url = "http://corruptly.herokuapp.com/oauth/access_token";
 
@@ -111,12 +112,12 @@ var app = {
     loadCandidates: function() {
 			$("#candidate").autocomplete({
 				target: $('#suggestions'),
-				source: [{value: 22, label: "Mockus"}, {value: 32, label: "Santos"}],
+				source: "http://corruptly.herokuapp.com/candidates",
 				callback: function(e) {
   				var candidate = $(e.currentTarget).data('autocomplete');
   				
-  				$("#candidate_id").val(candidate.value);
-  				$("#candidate").val(candidate.label);
+  				$("#candidate_id").val(candidate.id);
+  				$("#candidate").val(candidate.name);
   				$("#candidate").autocomplete('clear');
 				},
 				link: 'target.html?term=',
