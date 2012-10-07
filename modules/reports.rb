@@ -31,20 +31,11 @@ module Corruptly
       #       partial :asset, :locals => {:asset => asset}
     end
 
-    get '/:id' do
-       put 'hola'
-#      report = Report.find(params[:id])
-#      report.to_json
-    end
-    
     put '/:id' do  
 
     end
 
     delete '/:id' do
-   
-	CanCandidate.destroy(params['id'])
-
     end
   end
 end
