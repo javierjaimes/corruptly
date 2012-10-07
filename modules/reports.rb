@@ -1,8 +1,3 @@
-require 'json'
-require 'mongo'
-require 'mongo_mapper'
-require 'sinatra/base'
-require 'sinatra/reloader'
 require './helpers/auth'
 
 require './models/report'
@@ -18,14 +13,23 @@ module Corruptly
 
     post '/' do
       report = Report.create(
-        :longitude => params['longitude'], 
-        :latitude => params['latitude'], 
-        :localization => params['localization'], 
+        :location => params['location'],
         :advertising_piece => params['advertising_piece'], 
+        :description => params['description'],
+        :candidate_id => params['candidate_id']
         :comments => params['comments'], 
+        :file => params[ :file ][ :tempfile ]
       )
+      report.file_name = params[ :file ][ :filename ]
       report.save
+      
+      # Save attachment
       report.to_json
+      #asset = Asset.create(:file => params[:file][:tempfile])
+        # this changes the name so that when downloading the 'proper' name is preserved
+      #   asset.file_name = params[:file][:filename]
+      #     asset.save
+      #       partial :asset, :locals => {:asset => asset}
     end
 
     put '/:id' do  
