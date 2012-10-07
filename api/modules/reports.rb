@@ -1,8 +1,3 @@
-require 'json'
-require 'mongo'
-require 'mongo_mapper'
-require 'sinatra/base'
-require 'sinatra/reloader'
 require './helpers/auth'
 
 require './models/report'
@@ -23,9 +18,16 @@ module Corruptly
         :localization => params['localization'], 
         :advertising_piece => params['advertising_piece'], 
         :comments => params['comments'], 
+        :file => params[ :file ][ :tempfile ]
       )
+      report.file_name = params[ :file ][ :filename ]
       report.save
       report.to_json
+      #asset = Asset.create(:file => params[:file][:tempfile])
+        # this changes the name so that when downloading the 'proper' name is preserved
+      #   asset.file_name = params[:file][:filename]
+      #     asset.save
+      #       partial :asset, :locals => {:asset => asset}
     end
 
     put '/:id' do  
