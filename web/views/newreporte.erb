@@ -11,11 +11,9 @@
             <div class="formcamp">
                 <label for="Tipo">Candidato</label>
                 <select name="candidate_id" >
-                    <option value="1">lala</option>
-                    <option value="2">lala</option>
-                    <option value="3">lala</option>
-                    <option value="4">lala</option>
-                    <option value="5">lala</option>
+                <% @cand.each do |can| %>
+                    <option value="<%= can['id'] %>"><%= can["name"] %></option>
+                <% end %>
                 </select>
                 <p>¿A que candidato corresponde?</p>
             </div>

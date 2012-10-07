@@ -17,6 +17,7 @@ class Hackaton < Sinatra::Base
 	end
 
 	get '/' do
+		redirect '/reportes'
 		erb :index
 	end
 
@@ -27,6 +28,7 @@ class Hackaton < Sinatra::Base
 	end
 
 	get '/reportes/nuevo' do
+		@cand = HTTParty.get('http://corruptly.herokuapp.com/candidates')
 		erb :newreporte
 	end
 
