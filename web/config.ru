@@ -1,4 +1,4 @@
-require './Hackaton'
+require './hackaton'
 
 map '/' do
 	run Hackaton
