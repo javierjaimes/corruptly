@@ -19,6 +19,8 @@
  
 var geocoder;
 var url = "http://lumba.lu/upload.php";
+//var login_url = "http://lumba.lu/login.php";
+var login_url = "http://corruptly.herokuapp.com/oauth/access_token";
 
 var app = {
     // Application Constructor
@@ -38,12 +40,62 @@ var app = {
     // function, we must explicity call `app.receivedEvent(...);`
     onDeviceReady: function() {
         console.log('Received Event: deviceready');
+        
         $(document).delegate('#report-page', 'pageinit', app.initReport);
         
+        $('#login-form').on('submit', app.login);
+        
         $(document).bind('mobileinit', function() {
-            // Make your jQuery Mobile framework configuration changes here!
             $.mobile.buttonMarkup.hoverDelay = 50;
         });
+        
+        var storage = window.localStorage;
+        var token = storage.getItem("token");
+        if(token)
+          $.mobile.changePage('#main-page');
+    },
+    
+    login: function(e) {
+      console.log('login');
+      
+      e.preventDefault();
+      
+      $('.login-error').hide();
+      
+      if(!$('#username').val() || !$('#password').val()) {
+        $('.login-error').show().text('Error: Ingrese usuario y contraseña');
+        return;
+      }
+      
+      $.post(login_url, {
+          grant_type: "password",
+          client_id: "50718adbe32ee70002000001",
+          client_secret: "4c1817cc20c7ec460857e81cfb6ea3868e47342603e1415f5bb10a87a4040514",
+          scope: "read write",
+          redirect_uri: "http://movil.corruptly.co/auth",
+          username: $('#username').val(),
+          password: $('#password').val()
+        },
+      app.loginSuccess, 'json').error(app.loginError);
+      
+      return false;
+    },
+    
+    loginSuccess: function(data) {
+      var storage = window.localStorage;
+      
+      storage.setItem("token", data.access_token);
+      
+      $.ajaxSetup({ beforeSend : function(xhr, settings){
+        this.url += this.url.indexOf("?") == -1 ? "?oauth_token="+data.access_token : "&oauth_token="+data.access_token;
+        }
+      });
+            
+      $.mobile.changePage('#main-page');
+    },
+    
+    loginError: function() {
+      $('.login-error').show().text('Error: Usuario o contraseña invalidos');
     },
     
     initReport: function() {
@@ -136,6 +188,7 @@ var app = {
   		var data = {
     		candidate_id: $('#candidate_id').val(),
     		description: $('#description').val(),
+    		advertising_piece: $('#advertising_piece').val(),
     		location: JSON.stringify(loc),
     		image_uri: $('#attachment').val()
   		};

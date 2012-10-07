@@ -8,3 +8,4 @@ gem "sinatra-contrib", "~> 1.3.1"
 gem 'mongo'
 gem "bson_ext", "~> 1.6.4"
 gem "mongo_mapper", "~> 0.11.2"
+gem "rack-cors", "~> 0.2.7"
