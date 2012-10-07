@@ -16,9 +16,10 @@ class Hackaton < Sinatra::Base
 	get '/' do 
 		erb :index
 	end
-	
+
 	get '/reporte/:id' do 
 		erb :reporte
+	end
 
 	get '/about' do 
 		erb :about
