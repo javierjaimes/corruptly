@@ -12,7 +12,8 @@ module Corruptly
   class Elections < Application
 
     get '/' do
-      Election.all
+      elections = Election.all
+      elections.to_json
     end
 
     post '/' do

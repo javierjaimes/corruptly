@@ -1,0 +1,83 @@
+section[role="reporte"] {
+	width:670px;
+	display:inline-block;
+	vertical-align:top;
+	.reporte {
+		background:#fff;
+		border:1px solid #bcced6;
+		border-radius:5px;
+		margin:6px 10px;
+		padding:5px;
+
+		.imagen {
+			max-width:300px;
+			display:inline-block;
+			margin:5px;
+			margin-left:-25px;
+			margin-top:-25px;
+			padding:5px;
+			background:#fff;
+			outline:1px solid #bcced6;
+			box-shadow:0 0px 8px rgba(0,0,0,0.2);
+			@include trans();
+
+			img {
+				max-width:100%;
+				margin:0px;
+			}
+
+			&:hover {
+					-webkit-transform:rotatez(-7deg) scale(1.2);
+					-moz-transform:rotatez(-7deg) scale(1.2);
+					-o-transform:rotatez(-7deg) scale(1.2);
+					transform:rotatez(-7deg) scale(1.2);
+				}
+
+		}
+
+		.info {
+			display:inline-block;
+			vertical-align:top;
+			width:310px;
+			margin:15px 0px 15px 15px;
+			
+			h1 {
+				margin:0px;
+				color:#262626;
+				text-transform:capitalize;
+			}
+
+			.desc {
+				text-align:justify;
+				font-size:14px;
+				line-height:1.3em;
+			}
+		}
+
+		hr {
+			width:90%;
+			margin:5px auto;
+			border:none;
+			border-top:1px dashed #bcced6;
+		}
+
+		.reportinfo {
+			p {
+				display:inline-block;
+				font-size:12px;
+				margin:5px 10px;
+				color:#999eaf;
+
+				strong {
+					color:#262626;
+				}
+
+			}
+		}
+	}
+
+	.comments {
+		width:600px;
+		margin:60px auto;
+	}
+}

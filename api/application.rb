@@ -1,4 +1,3 @@
-require 'cgi'
 require 'json'
 require 'mongo'
 require 'mongo_mapper'
@@ -6,7 +5,6 @@ require 'sinatra/base'
 require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
-require './models/user'
 
 MongoMapper.connection = Mongo::Connection.new()
 MongoMapper.database = 'corruptly' 
@@ -23,7 +21,6 @@ module Corruptly
     end
 
     #helpers Sinatra::Auth
-    
     register Rack::OAuth2::Sinatra
     oauth.database = Mongo::Connection.new["corruptly"]
     oauth.authenticator = lambda do | username, password |
@@ -32,7 +29,6 @@ module Corruptly
       puts user.id
       user.email if user && user.password == password
     end
-
 
     before do
       #protected!
