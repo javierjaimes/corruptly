@@ -22,7 +22,7 @@ module Corruptly
     #helpers Sinatra::Auth
 
     get '/' do
-      puts oauth
+      
       'Hola mundo'
     end
 
