@@ -20,7 +20,6 @@ a {
 @import "candidato";
 
 @import "reportes";
-<<<<<<< HEAD
 
 section[role='about']{
 	background:white;
@@ -47,6 +46,6 @@ section[role='about']{
 		@include trans();
 	}
 }
-=======
+
 @import "reporte"
->>>>>>> 53df3f5e3c3782580e2e8dd7fe82b564f6ce296a
+
