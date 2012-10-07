@@ -26,19 +26,16 @@ map '/parties' do
 end
 
 map '/reports' do
-  run Corruptly::Reports
+	run Corruptly::Reports
 
-  map '/file' do
-    run Corruptly::Files
-  end
+	map '/file' do
+		run Corruptly::Files
+	end
 end
 
-<<<<<<< HEAD
 map'/candidate' do
-  run Corruptly::candidate
-=======
-map '/candidates' do
-  run Corruptly::Candidates
->>>>>>> 41581b59ac38c753d49ae10fd83967b9c4fae227
-end
+	run Corruptly::candidate
+	map '/candidates' do
+		run Corruptly::Candidates
+	end
 
