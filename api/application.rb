@@ -5,6 +5,7 @@ require 'sinatra/base'
 require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
+require './models/election'
 
 DB = Mongo::Connection.new[ "corruptly" ]
 puts DB
@@ -55,8 +56,15 @@ module Corruptly
     end
 
     get '/' do
+      election = Election.new(
+        :name => '123'
+      )
+      election.save
+      
+      elec = Election.all
       
       'Hola mundo'
+      elec.to_json
     end
 
     #Not Found
