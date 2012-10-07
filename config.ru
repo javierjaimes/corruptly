@@ -1,3 +1,4 @@
+require 'rack/cors'
 require './application'
 require './modules/users'
 require './modules/elections'
