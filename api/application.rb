@@ -5,6 +5,7 @@ require 'sinatra/base'
 require "rack/oauth2/sinatra"
 require 'sinatra/reloader'
 require './helpers/auth'
+require './models/election'
 
 DB = Mongo::Connection.new[ "corruptly" ]
 puts DB
@@ -38,11 +39,12 @@ module Corruptly
 
     get '/oauth/authorize' do
       puts "authorize"
-      if current_user
-        render "oauth/authorize"
-      else
-        redirect "/oauth/login?authorization=#{oauth.authorization}"
-      end
+      #if current_user
+        #render "oauth/authorize"
+      #else
+        #redirect "/oauth/login?authorization=#{oauth.authorization}"
+      #end
+      haml "oauth/authorize2"
     end
 
     post '/oauth/grant' do
@@ -54,11 +56,16 @@ module Corruptly
     end
 
     get '/' do
+      election = Election.new(
+        :name => '123'
+      )
+      election.save
+      
+      elec = Election.all
       
       'Hola mundo'
+      elec.to_json
     end
-
-
 
     #Not Found
     not_found do
@@ -76,6 +83,11 @@ module Corruptly
       errors = { :errors => error.messages }
       errors.to_json
     end
+
+    private
+      def current_user=(user)
+        @current_user = user
+      end
 
   end
 end
