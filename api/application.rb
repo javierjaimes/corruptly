@@ -16,7 +16,7 @@ module Corruptly
     disable :raise_errors
     disable :show_exceptions
     
-    use Rack::Cors do |config|
+    use Rack::Cors do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :options]

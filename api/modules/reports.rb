@@ -18,13 +18,14 @@ module Corruptly
 
     post '/' do
       report = Report.create(
-        :longitude => params['longitude'], 
-        :latitude => params['latitude'], 
-        :localization => params['localization'], 
+        :location => params['location'],
         :advertising_piece => params['advertising_piece'], 
-        :comments => params['comments'], 
+        :description => params['description'],
+        :candidate_id => params['candidate_id']
       )
       report.save
+      
+      # Save attachment
       report.to_json
     end
 
