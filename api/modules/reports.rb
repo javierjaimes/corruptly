@@ -30,10 +30,10 @@ module Corruptly
       #     asset.save
       #       partial :asset, :locals => {:asset => asset}
     end
-    get 'nu'  do
+    get '/nu'  do
 	puts 'as'
     end
-    get ':id' do
+    get '/:id' do
        puts 'hola'
 #      report = Report.find(params[:id])
 #      report.to_json
