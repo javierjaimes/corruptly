@@ -1,25 +1,30 @@
-require 'json'
-require 'mongo'
-require 'mongo_mapper'
-require 'sinatra/base'
-require 'sinatra/reloader'
-require './helpers/auth'
-
+require './models/user'
 module Corruptly
 
   class Users < Application
 
-    helpers Sinatra::Auth
+    #helpers Sinatra::Auth
+    #
 
 
     get '/' do
-      'Hola users'
-
+      users = User.all
+      users.to_json
     end
 
     post '/' do
-      'Hola users post'
+      puts params
+      user = User.create(
+        :email => params[ :email ],
+        :password => params[ :password ],
+        :developer =>  params[ :developer ]
+      )
 
+      unless user.save
+        throw( :halt, [400, "Wrong parameters" ] )
+      end
+
+      user.to_json
     end
 
     put '/:id' do
