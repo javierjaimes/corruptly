@@ -23,7 +23,10 @@ map '/parties' do
   run Corruptly::Parties
 end
 
-
 map '/reports' do
   run Corruptly::Reports
+end
+
+map '/candidates' do
+  run Corruptly::Candidates
 end

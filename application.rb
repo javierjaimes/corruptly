@@ -35,6 +35,7 @@ module Corruptly
 
     #helpers Sinatra::Auth
     oauth.authenticator = lambda do | username, password |
+      response.headers["Access-Control-Allow-Origin"] = "*"
       user = User.find_by_email( username )
       puts "user"
       puts user.id
