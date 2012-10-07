@@ -1,4 +1,7 @@
 section[role="reportes"] {
+	width:670px;
+	display:inline-block;
+	vertical-align:top;
 
 	.contReportes {
 		width:305px;
@@ -14,7 +17,7 @@ section[role="reportes"] {
 		.imgGrande {
 			width:100%;
 			height:136px;
-			background-position:center;
+			background-position:center, center center;
 			background-size:100%;
 			border-top-left-radius:5px;
 			border-top-right-radius:5px;
@@ -85,7 +88,7 @@ section[role="reportes"] {
 				overflow:hidden;
 				padding:6px;
 				display:inline-block;
-
+				vertical-align:middle;
 				img {
 					margin:2.5px;
 					border-radius:5px;
@@ -97,13 +100,16 @@ section[role="reportes"] {
 
 			.cantLikes {
 				@include degrade();
-				width:20%;
 				display:inline-block;
-				vertical-align:top;
 				padding:5px 10px;
+				border-radius:5px;
+				border:1px solid #0b60c8;
+				box-shadow: 0 1px 1px rgba(255,255,255,0.5) inset;
+				text-align:right;
 				p {
 					margin:0px;
 					color:#fff;
+					text-shadow:0 1px 1px rgba(0,0,0,0.6);
 				}
 			}
 		}
@@ -113,3 +119,33 @@ section[role="reportes"] {
 		}
 	}
 }
+
+aside {
+	margin-left:15px;
+	margin-right:0px;
+	width:270px;
+	max-width:270px;
+	min-height:100%;
+	display:inline-block;
+
+ > div {
+ 	background:#fff;
+ 	border:1px solid #bcced6;
+	border-radius:5px;
+	box-shadow:0px 0px 4px rgba(116, 145, 158, 0.48);
+	margin:10px 0px;		
+	padding:0px;
+	
+	iframe {
+		max-width:100%;
+		margin:0px;
+	}
+ }
+
+ #mapaGoogle {
+ 	background:#fff;
+ 	border-radius:5px;
+
+ }
+}
+
