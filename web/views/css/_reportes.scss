@@ -4,6 +4,7 @@ section[role="reportes"] {
 	vertical-align:top;
 
 	.contReportes {
+		background:#fff;
 		width:305px;
 		padding:0px;
 		margin:5px;
@@ -172,7 +173,46 @@ aside {
  #mapaGoogle {
  	background:#fff;
  	border-radius:5px;
-
  }
+
+ .social {
+ 	background:none;
+ 	border:none;
+ 	box-shadow:none;
+
+ 		> div {
+ 			width:270px;
+ 			height:102px;
+ 			display:block;
+ 			margin:0px;
+ 			margin-bottom:10px;
+ 		}
+
+ 		.fb {
+ 			background:url('/images/sharefb.png');
+ 			border:1px solid #324c7c;
+ 			border-radius:4px;
+ 			position:relative;
+
+ 			.fb-like {
+ 				position:absolute;
+ 				bottom:17px;
+ 				left:20px;
+ 			}
+ 		}
+
+ 		.tw {
+ 			background:url('/images/sharetw.png');
+ 			border:1px solid #2186b5;
+ 			border-radius:4px;
+ 			position:relative;
+
+ 			.tw-like {
+ 				position:absolute;
+ 				bottom:13px;
+ 				left:20px;
+ 			}
+ 		}
+ 	}
 }
 
