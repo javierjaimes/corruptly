@@ -16,8 +16,7 @@ module Corruptly
         :location => params['location'],
         :advertising_piece => params['advertising_piece'], 
         :description => params['description'],
-        :candidate_id => params['candidate_id']
-        :comments => params['comments'], 
+        :candidate_id => params['candidate_id'],
         :file => params[ :file ][ :tempfile ]
       )
       report.file_name = params[ :file ][ :filename ]
