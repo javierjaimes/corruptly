@@ -1,7 +1,9 @@
 require "sinatra/base"
 require "sinatra/reloader"
 require 'rubygems'
-require "rest_client"
+#require "rest_client"
+require "json"
+require "httparty"
 
 class Hackaton < Sinatra::Base
 
@@ -30,8 +32,8 @@ class Hackaton < Sinatra::Base
 	end
 
 	get '/reportes' do
-		@rest = RestClient.get 'http://corruptly.herokuapp.com/reports'
-		puts @rest
+		@rest = HTTParty.get('http://corruptly.herokuapp.com/reports')
+
 		erb :reportes
 	end
 

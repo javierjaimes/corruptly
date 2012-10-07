@@ -31,6 +31,11 @@ module Corruptly
       #       partial :asset, :locals => {:asset => asset}
     end
 
+    get '/:id' do
+      report = Report.find(params[:id])
+      report.to_json
+    end
+    
     put '/:id' do  
 
     end

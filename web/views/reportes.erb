@@ -1,15 +1,19 @@
+
 <section role="reportes">
+<% @rest.each do |reporte| %>
+<% @id = reporte["id"] %>
+    <a href="/reporte/<%= @id %>">
     <div class="contReportes">
-        <div class="imgGrande" style="background-image:url('http://lorempixel.com/400/400'), url('https://www.sined.mx/sined/lib/js/cargando.gif')"></div>
+        <div class="imgGrande" style="background-image:url('http://corruptly.herokuapp.com/reports/file/<%= @id %>'), url('https://www.sined.mx/sined/lib/js/cargando.gif')"></div>
         <div class="info">
             <header>
                 <div class="imagePerfil" style="background-image:url('http://lorempixel.com/80/80')"></div>
                 <div class="infope">
                     <hgroup>
-                        <h1 class="tituloPerfil">Valla en wayra</h1>
+                        <h1 class="tituloPerfil"><%= reporte["description"] %></h1>
                     </hgroup>
                     <p><strong><i class="icon-user"></i> Reportado por: </strong> anonimo</p>
-            <p><strong><i class="icon-map-marker"></i> Ubicacion: </strong> Wayra Colombia</p>
+            <p><strong><i class="icon-map-marker"></i> Ubicacion: </strong> <%= JSON.parse(reporte["location"])["address"] %></p>
                 </div>
             </header>
             
@@ -28,7 +32,9 @@
             </div>
         </div>
     </div>
-        
+    </a>
+    <% end %>
+
 </section>
 
 <aside>
