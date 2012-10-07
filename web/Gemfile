@@ -3,3 +3,4 @@ gem 'sinatra'
 gem 'sinatra-reloader'
 gem 'thin'
 gem 'sass'
+gem "rest-client", "~> 1.6.7"
