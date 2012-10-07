@@ -32,9 +32,9 @@ module Corruptly
     end
 
     get '/:id' do
-	    put 'Hola'
+       put 'hola'
 #      report = Report.find(params[:id])
-#     report.to_json
+#      report.to_json
     end
     
     put '/:id' do  
