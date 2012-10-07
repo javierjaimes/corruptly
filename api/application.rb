@@ -7,8 +7,10 @@ require 'sinatra/reloader'
 require './helpers/auth'
 
 
-puts MongoMapper.database = 'corruptly' 
-puts MongoMapper.connection
+DB = Mongo::Connection.new[ "corruptly" ]
+puts DB
+MongoMapper.connection = DB
+MongoMapper.database = 'corruptly' 
 
 module Corruptly
   class Application < Sinatra::Base
@@ -23,13 +25,20 @@ module Corruptly
 
     #helpers Sinatra::Auth
     register Rack::OAuth2::Sinatra
-    oauth.database = MongoMapper.connection
+    oauth.database = DB
     oauth.authenticator = lambda do | username, password |
       user = User.find( username )
       user if user && user.authenticated?( password )
     end
 
-    get "/oauth/authorize" do
+    before do
+      #protected!
+      content_type :json
+      @current_user = User.find(oauth.identity) if oauth.authenticated?
+    end
+
+    get '/oauth/authorize' do
+      puts "authorize"
       if current_user
         render "oauth/authorize"
       else
@@ -37,11 +46,11 @@ module Corruptly
       end
     end
 
-    post "/oauth/grant" do
+    post '/oauth/grant' do
       oauth.grant! "Superman"
     end
 
-    post "/oauth/deny" do
+    post '/oauth/deny' do
       oauth.deny!
     end
 
@@ -51,10 +60,6 @@ module Corruptly
     end
 
 
-    before do
-      #protected!
-      content_type :json
-    end
 
     #Not Found
     not_found do
