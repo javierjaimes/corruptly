@@ -7,8 +7,6 @@ require './helpers/auth'
 
 require './models/election'
 
-MongoMapper.database = ''
-
 module Corruptly
 
   class Elections < Application
@@ -18,8 +16,13 @@ module Corruptly
     end
 
     post '/' do
-      Election.create(:name => request[:name], :corporation => request[:corporation], :year => request[:year])
-      {"amaury" => "amaury"}.to_json
+      election = Election.create(
+                                 :name => params['name'], 
+                                 :corporation => params['corporation'], 
+                                 :year => params['year'], 
+                                 )
+      election.save
+      election.to_json
     end
 
     put '/:id' do

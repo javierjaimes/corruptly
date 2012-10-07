@@ -1,3 +1,4 @@
+require 'cgi'
 require 'json'
 require 'mongo'
 require 'mongo_mapper'
@@ -7,9 +8,8 @@ require 'sinatra/reloader'
 require './helpers/auth'
 require './models/user'
 
-#DATABASE = Mongo::Connection.new
-#puts DB
-#MongoMapper.connection = DATABASE
+MongoMapper.connection = Mongo::Connection.new()
+MongoMapper.database = 'corruptly' 
 
 module Corruptly
   class Application < Sinatra::Base
@@ -23,66 +23,58 @@ module Corruptly
     end
 
     #helpers Sinatra::Auth
+    
     register Rack::OAuth2::Sinatra
-    oauth.database = Mongo::Connection.new[ 'corruptly' ]
+    oauth.database = Mongo::Connection.new["corruptly"]
     oauth.authenticator = lambda do | username, password |
       user = User.find_by_email( username )
       puts "user"
-      user if user && user.password == password
+      puts user.id
+      user.email if user && user.password == password
     end
+
 
     before do
       #protected!
       content_type :json
-      @current_user = User.find(oauth.identity) if oauth.authenticated?
-    end
+      #@current_user = User.find_by_email(oauth.identity) if oauth.authenticated?
+      #@get = CGI::parse(request.query_string).to_json
 
-    get '/oauth/authorize' do
-      puts "authorize"
-      #if current_user
-        #render "oauth/authorize"
-      #else
-        #redirect "/oauth/login?authorization=#{oauth.authorization}"
+      #load the query string
+      query = request.query_string
+      #unless !/^oauth_token/.match( query ).nil?
+        ##throw(:halt, [401, "Unanthorized"]) 
       #end
-      haml "oauth/authorize2"
+
+      unless query.match( 'oauth_token=' )
+        puts 'si'
+        throw( :halt, [ 401, "Unauthorized" ])
+      end
+
+      #oauth_token = 
+      token =  Rack::OAuth2::Server::get_access_token query.gsub /^oauth_token=/, ''
+      puts token
+      #puts token.identity
     end
 
-    post '/oauth/grant' do
-      oauth.grant! "Superman"
+    #oauth_required '/protected'
+    #oauth_required '/protected', :scope => 'read write'
+
+    get '/protected' do
+      #puts Rack::OAuth2::Server::get_access_token query.gsub /^oauth_token=/, ''
+      #puts "Y el token"
+      #if oauth.authenticated?
+      #'Show me!!!'
+      #else
+      #  'Not authtenticated'
+      #end
+      "Hola mundo"
+
     end
 
-    post '/oauth/deny' do
-      oauth.deny!
-    end
-
-    get '/' do
-      user = User.new(
-        :email => 'javierjaimes@gmail.com',
-        :password => '123',
-        :developer => true
-      )
-      #user.save
-      user.to_json
-      users = User.all
-      users.to_json
-    end
-
-    #Not Found
-    not_found do
-    end
-
-    error 400 do
-      "Bad wrong parameters"
-    end
-
-    error 401 do
-      error = Error.new
-      error.messages.build( :code => 401, :text => 'Access forbidden')
-      error.to_json
-
-      errors = { :errors => error.messages }
-      errors.to_json
-    end
+    #error 401 do
+    #  return [401, { "Content-Type"=>"text/plain" }, [error && error.message || ""]]
+    #end
 
   end
 end

@@ -5,7 +5,6 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require './helpers/auth'
 
-
 module Corruptly
 
   class Users < Application

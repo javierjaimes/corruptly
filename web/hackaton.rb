@@ -1,4 +1,5 @@
-﻿require 'sinatra/base'
+﻿# coding: utf-8
+require 'sinatra/base'
 require 'sinatra/reloader'
 
 class Hackaton < Sinatra::Base 

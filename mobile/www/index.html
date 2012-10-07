@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Corruptly</title>
+    </head>
+    <body>
+        <!-- !Main page -->
+        <div id="main-page" data-role="page"> 
+        	<div data-role="header"><h1>Corruptly</h1></div>
+        	
+        	<div data-role="content">
+          	<a data-role="button" href="#report-page" data-transition="slide">Reportar</a>
+        	</div>
+        </div>
+        
+        <!-- !Report page -->
+        <div id="report-page" data-role="page" data-add-back-btn="true" data-back-btn-text="Atrás"> 
+        	<div data-role="header"><h1>Reportar</h1></div>
+        	
+        	<div data-role="content">
+          	<p>Reporta blah</p>
+          	
+          	<form id="report-form" data-ajax="false">
+              <label for="candidate">Candidato:</label>
+              <input type="text" name="candidate" id="candidate" />
+              <input type="hidden" name="candidate_id" id="candidate_id" />
+              <ul id="suggestions" data-role="listview" data-inset="true"></ul>
+              
+              <label for="description">Descripción:</label>
+              <textarea name="description" id="description"></textarea>
+              
+              <div id="location-container">
+                <label for="location">Ubicación:</label>
+                <input type="text" name="location" id="location" />
+                <input type="hidden" name="lat" id="lat" />
+                <input type="hidden" name="lng" id="lng" />
+              </div>
+                            
+              <img id="attachment-thumb" src="" />
+              <input type="hidden" name="attachment" id="attachment" />
+                            
+              <label for="attach">Adjuntar evidencia:</label>
+              <div data-role="controlgroup">
+                <a id="take-picture-btn" href="#" data-role="button">Tomar foto</a>
+                <a id="take-video-btn" href="#" data-role="button">Tomar video</a>
+                <a id="attach-file-btn" href="#" data-role="button">Adjuntar archivo</a>
+              </div>
+                            
+              <div class="error"></div>
+              
+              <br />
+                            
+              <button type="submit" data-theme="b">Enviar reporte</button>
+          	</form>
+        	</div>
+        </div>
+        
+        <a href="#dialog" data-rel="dialog" style="display:none" id="open-dialog">Open dialog</a> 
+                
+        <div data-role="dialog" id="dialog">
+      		<div data-role="header">
+      			<h1>Listo!</h1>
+      
+      		</div>
+      
+      		<div data-role="content">
+        			<h1>Gracias por reportar!</h1>
+        			<p>Los datos se han enviado.</p>
+        			<a href="#main-page" data-role="button" data-theme="b">OK</a>    
+          </div>
+      	</div>
+        
+        
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
+        <script type="text/javascript" src="js/jqm.autoComplete-1.4.3-min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="cordova-2.1.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            $(function() {
+              app.initialize();
+            });
+        </script>
+    </body>
+</html>
