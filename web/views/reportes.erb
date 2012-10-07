@@ -2,15 +2,22 @@
 <section role="reportes">
 <% @rest.each do |reporte| %>
 <% @id = reporte["id"] %>
-    <a href="/reporte/<%= @id %>">
+    <a href="/reportes/<%= @id %>">
     <div class="contReportes">
+        <% if reporte["file_type"][0..4]=="video" %>
+            <video src="http://corruptly.herokuapp.com/reports/file/<%= @id %>" controls="controls" style="background-image:url('https://www.sined.mx/sined/lib/js/cargando.gif')">
+                <source src="http://corruptly.herokuapp.com/reports/file/<%= @id %>"></source>
+            </video>
+        <% else %>
         <div class="imgGrande" style="background-image:url('http://corruptly.herokuapp.com/reports/file/<%= @id %>'), url('https://www.sined.mx/sined/lib/js/cargando.gif')"></div>
+        
+        <% end %>
         <div class="info">
             <header>
                 <div class="imagePerfil" style="background-image:url('http://lorempixel.com/80/80')"></div>
                 <div class="infope">
                     <hgroup>
-                        <h1 class="tituloPerfil"><%= reporte["description"] %></h1>
+                        <h1 class="tituloPerfil"><%= reporte["advertising_piece"] %></h1>
                     </hgroup>
                     <p><strong><i class="icon-user"></i> Reportado por: </strong> anonimo</p>
             <p><strong><i class="icon-map-marker"></i> Ubicacion: </strong> <%= JSON.parse(reporte["location"])["address"] %></p>
@@ -28,7 +35,13 @@
                 <img src="http://lorempixel.com/48/48" alt="">
             </div>
             <div class="cantLikes">
-                <p><i class="icon-thumbs-up icon-white"></i> 1.000</p>
+                <p><i class="icon-thumbs-up icon-white"></i> <% @can = numberlikes("http://google.com/") %>
+                    <% if @can==nil %>
+                        0
+                    <% else %>
+                    <%= @can %>
+                    <% end %>
+                    </p>
             </div>
         </div>
     </div>
@@ -40,7 +53,15 @@
 <aside>
     <div class="filtros">
         <ul>
-            <li><p>Candidatos <i class="icon-plus icon-white"></i></p>
+            <li class="candida">
+                <p>Candidatos <i class="icon icon-plus icon-white"></i></p>
+                <div class="candi" style="display:none;">
+                <% @cand.each do |can| %>
+                    <a href="/reports/candidate/<%= can['id'] %>"><%= can["name"] %></a>
+                
+                <% end %>
+                </div>
+            
             </li>
             <li><p>Mas populares <i class="icon-plus icon-white"></i></p></li>
             <li><p>Ubicacion <i class="icon-plus icon-white"></i></p></li>

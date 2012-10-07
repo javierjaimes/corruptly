@@ -26,6 +26,10 @@ section[role="reporte"] {
 				margin:0px;
 			}
 
+			video {
+				max-width:100%;
+			}
+
 			&:hover {
 					-webkit-transform:rotatez(-7deg) scale(1.2);
 					-moz-transform:rotatez(-7deg) scale(1.2);

@@ -1,27 +1,35 @@
 <br><br>
 <section role="reporte">
+<% @rest.each do | reporte | %>
+<% @id = reporte["id"] %>
+	<% if reporte["id"] == params[:id] %>
 	<div class="reporte">
 		<div class="imagen">
-			<img src="http://lorempixel.com/500/300" alt="">
+			<% if reporte["file_type"][0..4]=="video" %>
+				<video src="http://corruptly.herokuapp.com/reports/file/<%= @id %>" controls="controls"></video>
+			<% else %>
+				<img src="http://corruptly.herokuapp.com/reports/file/<%= @id %>" alt="">
+			<% end %>
 		</div>
 		<div class="info">
 			<header>
 				<hgroup>
-					<h1>Valla en wayra</h1>
+					<h1><%= reporte["advertising_piece"] %></h1>
 				</hgroup>
 			</header>
 			
 			<div class="desc">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde obcaecati possimus eveniet eos eligendi suscipit atque? Mollitia quo reiciendis nam corrupti repellendus doloremque ut exercitationem ad expedita vitae temporibus minima!</p>
+				<p><%= reporte["description"] %> </p>
 			</div>
 		</div>
 		<hr>
 		<div class="reportinfo">
 			<p><strong><i class="icon-user"></i> Reportado por: </strong> anonimo</p>
-            <p><strong><i class="icon-map-marker"></i> Ubicacion: </strong> Wayra Colombia</p>
+            <p><strong><i class="icon-map-marker"></i> Ubicacion: </strong> <%= JSON.parse(reporte["location"])["address"] %></p>
 		</div>
 	</div>
-	
+		<% end %>
+	<% end %>
 	<div class="comments">
 		        <div id="disqus_thread"></div>
         <script type="text/javascript">
@@ -44,7 +52,7 @@
 <aside>
 	<div class="social">
 		<div class="fb">
-			<div class="fb-like" data-href="http://balotimetro.com" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
+			<div class="fb-like" data-href="/reportes/<%= @id %>" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
 		</div>
 		
 		<div class="tw">
