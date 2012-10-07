@@ -135,11 +135,35 @@ aside {
 	box-shadow:0px 0px 4px rgba(116, 145, 158, 0.48);
 	margin:10px 0px;		
 	padding:0px;
-	
+
 	iframe {
 		max-width:100%;
 		margin:0px;
 	}
+ }
+
+ .filtros {
+ 	ul {
+ 		margin:0px;
+ 		padding:0px;
+
+ 		li {
+ 			margin:10px;
+ 			list-style-type: none;
+ 			@include degrade();
+ 			color:#fff;
+ 			padding:5px 10px;
+ 			border-radius:5px;
+ 			border:1px solid #0b63cf;
+ 			box-shadow:0 1px 1px rgba(255,255,255,0.4) inset;
+ 			text-shadow:0 1px 1px rgba(0,0,0,0.6);
+ 			cursor:pointer;
+ 			.icon-white {
+ 				float:right;
+ 				clear:both;
+ 			}
+ 		}
+ 	}
  }
 
  #mapaGoogle {
