@@ -1,0 +1,4 @@
+gem 'sinatra'
+gem 'sinatra-reloader'
+gem 'thin'
+gem 'sass'
