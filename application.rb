@@ -15,7 +15,13 @@ module Corruptly
 
     disable :raise_errors
     disable :show_exceptions
-
+    
+    use Rack::Cors do |config|
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
 
     configure :production do
       uri = URI.parse(ENV['MONGOHQ_URL'])
@@ -35,7 +41,6 @@ module Corruptly
 
     #helpers Sinatra::Auth
     oauth.authenticator = lambda do | username, password |
-      response.headers["Access-Control-Allow-Origin"] = "*"
       user = User.find_by_email( username )
       puts "user"
       puts user.id
@@ -43,7 +48,6 @@ module Corruptly
     end
 
     before do
-      response.headers["Access-Control-Allow-Origin"] = "*"
       content_type :json
     end
 
