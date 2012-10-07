@@ -1,3 +1,4 @@
+﻿# coding: utf-8
 require 'sinatra/base'
 require 'sinatra/reloader'
 
@@ -24,10 +25,13 @@ class Hackaton < Sinatra::Base
 		erb :reportes
 	end
 
+	get '/candidato' do
+		erb :candidato
+	end
+
 	get '/stats' do 
 
 	end
-
 
 	get '/css/:name.css' do
 		content_type 'text/css', :charset => 'utf-8'
