@@ -39,11 +39,12 @@ module Corruptly
 
     get '/oauth/authorize' do
       puts "authorize"
-      if current_user
-        render "oauth/authorize"
-      else
-        redirect "/oauth/login?authorization=#{oauth.authorization}"
-      end
+      #if current_user
+        #render "oauth/authorize"
+      #else
+        #redirect "/oauth/login?authorization=#{oauth.authorization}"
+      #end
+      haml "oauth/authorize2"
     end
 
     post '/oauth/grant' do
@@ -58,8 +59,6 @@ module Corruptly
       
       'Hola mundo'
     end
-
-
 
     #Not Found
     not_found do
@@ -77,6 +76,11 @@ module Corruptly
       errors = { :errors => error.messages }
       errors.to_json
     end
+
+    private
+      def current_user=(user)
+        @current_user = user
+      end
 
   end
 end
